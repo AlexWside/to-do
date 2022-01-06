@@ -25,4 +25,19 @@ export default {
 
 <style>
 
+.tasks-grid{
+
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+.tasks-grid .task{
+  margin: 10px;
+}
+
+.no-task{
+    color: #AAA;
+    font-size: 1.7rem;
+}
 </style>
