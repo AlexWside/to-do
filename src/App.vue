@@ -2,9 +2,10 @@
   <div id="app">
     <h1>Tarefas</h1>
     <NewTask @taskAdded="addTask" />
-    <TaskGrid :tasks="tasks" />
+    <TaskGrid @taskDeleted="deleteTask" @chagedState="statusChanger" :tasks="tasks" />
 
-    {{ name }}
+
+
   </div>
 </template>
 
@@ -19,17 +20,34 @@ export default {
         { name: "lavar roupa", status: false },
         { name: "comprar comida", status: true },
       ],
-      name: "",
+      id: ""
+
     };
   },
 	methods: {
 		addTask(task){
 
 
+				const SameName = (valor) => { return valor.name === task.name }
 
+				const Result = this.tasks.filter(SameName).length == 0
+
+				if (Result){
+				this.tasks.push({
+					name: task.name,
+					status: task.status || true
+				});
+
+				}
 				
 
-		}
+		},
+    deleteTask(i){
+          this.tasks.splice(i,1)
+    },
+    statusChanger(i){
+        this.tasks[i].status = !this.tasks[i].status 
+    }
 	}
 };
 </script>
