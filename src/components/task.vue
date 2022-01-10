@@ -1,6 +1,6 @@
 <template>
   <div class="task" @click="$emit('chagedState', task )" :class="stateClass">
-    <span @click="$emit('taskDeleted', task)" class="clone">x</span>
+    <span @click.stop="$emit('taskDeleted', task)" class="clone">x</span>
     <p>{{ task.name }}</p>
   </div>
 </template>
